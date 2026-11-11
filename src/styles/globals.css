@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #FAFAFA;
+  --accent-orange: #FF6B00;
+  --accent-gold: #EA580C;
+  --accent-purple: #F97316;
+}
+
+body {
+  background-color: #FFFFFF;
+  color: #09090B;
+  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  overflow-x: hidden;
+  selection-background-color: #FF6B00;
+  selection-color: #FFFFFF;
+}
+
+::selection {
+  background: #FF6B00;
+  color: #ffffff;
+}
+
+/* Custom modern scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F4F4F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 107, 0, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6B00;
+}
+
+/* Accessibility: Visually hidden skip link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: #FF6B00;
+  color: #FFFFFF;
+  font-weight: 700;
+  border-radius: 9999px;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Architectural Fine Grid Trace */
+.bg-grid-trace {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Tactile button micro-interactions */
+.btn-tactile {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.btn-tactile:hover {
+  transform: translateY(-1.5px);
+}
+.btn-tactile:active {
+  transform: translateY(0.5px) scale(0.985);
+}
+
+/* Restrained Traveling Border Beam */
+@keyframes borderBeamTravel {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Card traveling border beam overlay with mask composite */
+.border-beam-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: 25;
+  padding: 1.5px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.border-beam-overlay::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250%;
+  height: 250%;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 310deg, rgba(255, 107, 0, 0.95) 345deg, rgba(255, 170, 70, 1) 355deg, transparent 360deg);
+  animation: borderBeamTravel 4.5s linear infinite;
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+}
+
+.group:hover .border-beam-overlay::before,
+.group\/tilt:hover .border-beam-overlay::before,
+[data-beam-active="true"] .border-beam-overlay::before {
+  opacity: 1;
+}
+
+/* High-tech button with traveling beam */
+.btn-beam {
+  position: relative;
+  overflow: hidden;
+}
+.btn-beam::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 1.5px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 300deg, rgba(255, 255, 255, 0.9) 345deg, transparent 360deg);
+  animation: borderBeamTravel 3.2s linear infinite;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+.btn-beam:hover::after {
+  opacity: 1;
+  animation-duration: 2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .border-beam-overlay::before,
+  .btn-beam::after {
+    animation: none;
+    opacity: 0.2;
+  }
+  .btn-tactile {
+    transition: none;
+    transform: none !important;
+  }
+}
+
+/* Glassmorphism utility classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
+}
+
+.glass-panel-orange {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 107, 0, 0.35);
+  box-shadow: 0 10px 30px -5px rgba(255, 107, 0, 0.12), 0 0 0 1px rgba(255, 107, 0, 0.15);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06);
+}
+
+.glow-orange {
+  text-shadow: 0 0 20px rgba(255, 107, 0, 0.35);
+}
+
+.glow-gold {
+  text-shadow: 0 0 20px rgba(234, 88, 12, 0.35);
+}
+
+/* Hero light ray effect */
+.hero-beam-ray {
+  background: radial-gradient(ellipse 60% 50% at 80% 0%, rgba(255, 130, 30, 0.15) 0%, rgba(255, 107, 0, 0.08) 35%, transparent 75%);
+  filter: blur(40px);
+}
